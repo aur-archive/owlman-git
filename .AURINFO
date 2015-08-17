@@ -1,0 +1,17 @@
+pkgbase = owlman-git
+	pkgdesc = A pacman and cower wrapper focused on simplicity, Git version
+	pkgver = 203
+	pkgrel = 2
+	url = https://github.com/baskerville/owlman
+	arch = any
+	license = custom:Unlicense
+	makedepends = git
+	depends = cower
+	depends = expac
+	optdepends = abs: for the *abs* action
+	provides = owlman
+	conflicts = owlman
+	source = git://github.com/baskerville/owlman.git
+
+pkgname = owlman-git
+

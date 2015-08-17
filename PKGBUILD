@@ -1,0 +1,31 @@
+# Maintainer: Bastien Dejean <nihilhill@gmail.com>
+
+_pkgname=owlman
+pkgname=${_pkgname}-git
+pkgver=203
+pkgrel=2
+pkgdesc='A pacman and cower wrapper focused on simplicity, Git version'
+arch=('any')
+url="https://github.com/baskerville/${_pkgname}"
+license=('custom:Unlicense')
+depends=('cower' 'expac')
+optdepends=('abs: for the *abs* action')
+makedepends=('git')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=("git://github.com/baskerville/${_pkgname}.git")
+md5sums=('SKIP')
+
+pkgver() {
+    cd "$srcdir/$_pkgname"
+    git rev-list --count HEAD
+}
+
+package() {
+    cd "$srcdir/$_pkgname"
+    mkdir -p "$pkgdir"/{usr/bin,etc/bash_completion.d,usr/share/zsh/site-functions,usr/share/man/man8}
+    cp -p owlman owlman_* "$pkgdir/usr/bin"
+    cp contrib/bash_completion "$pkgdir/etc/bash_completion.d/owlman"
+    cp contrib/zsh_completion "$pkgdir/usr/share/zsh/site-functions/_owlman"
+    cp doc/owlman.8 "$pkgdir/usr/share/man/man8"
+}
